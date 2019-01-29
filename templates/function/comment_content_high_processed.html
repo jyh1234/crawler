@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<title>crawler_comment</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/nav.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/comment.css" />
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/comment_content.js"></script>
+	</head>
+	<body>
+		<ul>
+			<li><div class="title"><img src="/static/images/logo_nowords.png" id="logo">宝骏新能源评论预警系统</div></li>
+			<li><a href="{% url 'function:index' %}">主页</a></li>
+			<li><a href="{% url 'admin:index'%}">管理人员</a></li>
+			<li style="float: right;padding-right: 30px;"><a href="{% url 'account:auth_logout' %}">退出登录</a></li>
+		</ul>
+		
+		<div class="wrapper">
+			<h2>高分库-已处理</h2>
+			<hr color="#84c1FF"/>
+			<div class="layout" id="layout1">
+				<div class="comment">
+					<h3>评论详情</h3>
+					<div class="comment_id">
+						No.<span span id="comment_id"></span>
+					</div>
+					<div class="time">
+						<div class="time1">
+							<label>抓取时间：</label>
+							<p id="catch_time"></p>
+						</div>
+						<div class="time2">
+							<label>评论时间：</label>
+							<p id="comment_time"></p>
+						</div>
+					</div>
+					<div class="address">
+						<label>抓取地址：</label>
+						<p id="catch_address"></p>
+					</div>
+					<div class="comment_content">
+						<label>评论内容：</label>
+						<textarea id="comment_content" readonly="readonly"></textarea>
+					</div>
+				</div>
+			</div>
+		
+			<div class="layout" id="layout2">
+				<div class="operation">
+					<h3>评分操作</h3>
+					<div class="sys_score">
+						<label>&nbsp;&nbsp;&nbsp;系统评分：</label>
+						<span id="sys_score"></span>
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人工评分：</label>
+						<span id="arti_score"></span>
+					</div>
+					<div class="change_score">
+						<label>&nbsp;&nbsp;&nbsp;评分修正：</label>
+						<input type="text" class="input_score" id="new_score" />
+						<input type="button" id="submit_newscore" class="btn1" value="确定" onclick="submit_newscore()" />
+					</div>
+					<div class="send_msg">
+						<label>信息发送至：</label>
+						<select class="manage_people" id="manage_people">
+
+						</select>
+						<input type="button" class="btn1" value="发送" onclick="send_message()" />
+					</div>
+				</div>
+				<div class="change_comment">
+					<input type="button" id="pageup" class="btn2" value="上一条" onclick="changeitems(this)" />
+					<input type="button" id="pagedown" class="btn2" value="下一条" onclick="changeitems(this)" />
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

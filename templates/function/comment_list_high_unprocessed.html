@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>commen_list_low_unprocessed</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/nav.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/comment_list.css" />
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/comment_list.js"></script>
+	</head>
+	<body>
+		<ul>
+			<li><div class="title"><img src="/static/images/logo_nowords.png" id="logo">宝骏新能源评论预警系统</div></li>
+			<li><a href="{% url 'function:index' %}">主页</a></li>
+			<li><a href="{% url 'admin:index'%}">管理人员</a></li>
+			<li style="float: right;padding-right: 30px;"><a href="{% url 'account:auth_logout' %}">退出登录</a></li>
+		</ul>
+		
+		<div class="all">
+
+			<div></div>
+			<div class="current_comments">
+				<table>
+					<h3>高分库-未处理</h3>
+					<thead>
+						<tr>
+							<th>编号</th>
+							<th>抓取时间</th>
+							<th>评论时间</th>
+							<th>评分</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody class="comment_list">
+                    <a href="{% url 'function:comment_content_high_unprocessed' %}" style="text-decoration: none;"></a>
+					</tbody>
+				</table>
+				<input type="button" class="page_up" value="上一页" onclick="page_up()" />
+				<span id="page_current">1</span>/
+				<span id="page_all"></span>
+				<input type="button" class="page_down" value="下一页" onclick="page_down()" />
+			</div>
+			
+		</div>
+	</body>
+</html>

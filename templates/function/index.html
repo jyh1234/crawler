@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title>crawler_index</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/login&index.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/nav.css" />
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/index.js"></script>
+	</head>
+	<body>
+        {% if user.is_authenticated %}
+		<ul>
+			<li><div class="title"><img src="/static/images/logo_nowords.png" id="logo">宝骏新能源评论预警系统</div></li>
+			<li><a href="{% url 'function:index' %}">主页</a></li>
+			<li><a href="{% url 'function:admin' %}">管理人员</a></li>
+                    <li>
+                        <a href="#">{{ user.username }}</a>
+                    </li>
+			<li style="float: right;padding-right: 30px;"><a href="{% url 'account:auth_logout' %}">退出登录</a></li>
+		</ul>
+
+		<div class="wrapper">
+			<div class="low">
+				<div class="index_m">
+					<div class="index_boder">
+						<div class="index_padding" id="index_model">
+							<h2 class="score_classification">低分库</h2>
+							<p class="data_display">
+							<!--<a href="comment_list_low.html" style="text-decoration: none;"> -->
+                            <a href="{% url 'function:low_unprocessed_list_html' %}" style="text-decoration: none;">
+                            <span>待处理评论：</span>
+							<span id="low_unprocessed"></span>
+                            </a>
+							</p>
+							<br />
+							<p class="data_display">
+                            <a href="{% url 'function:low_processed_list_html' %}" style="text-decoration: none;">
+							<span>已处理评论：</span>
+							<span id="low_processed"></span>
+                            </a>
+							</p>
+							<br /><br />
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="high">
+				<div class="index_m">
+					<div class="index_boder">
+						<div class="index_padding" id="index_model">
+							<h2 class="score_classification">高分库</h2>
+							<p class="data_display">
+							<a href="{% url 'function:high_unprocessed_list_html' %}" style="text-decoration: none;">
+							<span>待处理评论：</span>
+							<span id="high_unprocessed"></span>
+                            </a>
+							</p>
+							<br />
+							<p class="data_display">
+                            <a href="{% url 'function:high_processed_list_html' %}" style="text-decoration: none;">
+							<span>已处理评论：</span>
+							<span id="high_processed"></span>
+							</a>
+							</p>
+							<br /><br />
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+            <div class="index_operation">
+				<div class="index_op">
+					<div class="index_bg">
+						<div class="index_padding">
+							<input type="button" value="保存并训练" class="btn" onclick="save_train()" />
+							<input type="button" value="正确率" class="btn" onclick="show_accuracy()" />
+							<input type="button" value="重新系统评分" class="btn" onclick="rejudge()" />
+							<p id="info_display"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+            {% else %}
+                <br>
+                <br>
+                <p>你莫得访问权限，请先登录</p>
+                <p><a href="{% url 'account:auth_login' %}">登录</a> </p>
+    {% endif %}
+	</body>
+</html>
